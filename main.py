@@ -26,6 +26,8 @@ svc = pickle.load(open('models/svc.pkl','rb'))
 # custome and helping functions
 #==========================helper funtions================
 def helper(dis):
+    import json
+
     desc = description[description['Disease'] == dis]['Description']
     desc = " ".join([w for w in desc])
 
@@ -33,10 +35,10 @@ def helper(dis):
     pre = [col for col in pre.values]
 
     med = medications[medications['Disease'] == dis]['Medication']
-    med = [med for med in med.values]
+    med = json.loads(med.iloc[0].replace("'", '"'))
 
     die = diets[diets['Disease'] == dis]['Diet']
-    die = [die for die in die.values]
+    die = json.loads(die.iloc[0].replace("'", '"'))
 
     wrkout = workout[workout['disease'] == dis] ['workout']
 
