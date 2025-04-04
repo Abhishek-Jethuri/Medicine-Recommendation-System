@@ -19,7 +19,7 @@ diets = pd.read_csv("datasets/diets.csv")
 
 
 # load model===========================================
-svc = pickle.load(open('models/svc.pkl','rb'))
+rfModel = pickle.load(open('models/rfModel.pkl','rb'))
 
 
 #============================================================
@@ -53,7 +53,7 @@ def get_predicted_value(patient_symptoms):
     input_vector = np.zeros(len(symptoms_dict))
     for item in patient_symptoms:
         input_vector[symptoms_dict[item]] = 1
-    return diseases_list[svc.predict([input_vector])[0]]
+    return diseases_list[rfModel.predict([input_vector])[0]]
 
 
 
